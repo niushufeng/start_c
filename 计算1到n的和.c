@@ -22,9 +22,9 @@
 */
 int main() {
   int a,s=0,i;
-  scanf("%d", a);
-  for (size_t i = 0; i < a; i++) {
-    s += a;
+  scanf("%d", &a);
+  for (i = 1; i <= a; i++) {
+    s += i;
   }
   printf("%d\n", s);
   return 0;
