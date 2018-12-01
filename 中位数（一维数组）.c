@@ -28,19 +28,20 @@
 // 来源/分类
 #include "stdio.h"
 
-// 排序
-void bubble_sort(int *p,int count) {
-  int i, j, _;
-  for (i = 0; i < count-1; i++) {
-    // for (j = 0; j < count-i; j++) {
-      for (j = 0; j < count-1-i; j++) {
+// sort
+void bubble_sort(int *p, int len) {
+  int _,i, j;
+  for (i = 0; i < len-1; i++) {
+    for (j = 0; j < len-1-i; j++) {
       if (*(p+j)<*(p+j+1)) {
-        _ = *(p+j); *(p+j) = *(p+j-1); *(p+j-1) = _;
+        _ = *(p+j);*(p+j) = *(p+j+1);*(p+j+1) =_;
       }
     }
   }
 }
-int main(int argc, char const *argv[]) {
+
+// find the median 
+int main() {
   int len;//储存数组长度
   int i;
   float median;//中位数
