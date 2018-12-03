@@ -28,3 +28,37 @@
 // 样例输出
 //
 // i love you
+#include "stdio.h"
+
+// 转换字符
+char transfer(char i,int diff){
+  if (i != ' ' && diff >0) {
+    i += diff;
+    while (i>'z') {
+      i -= 24;
+    }
+  }
+  else if(i != ' ' && diff <0){
+    i += diff;
+    while (i<'a') {
+      i+= 24;
+    }
+  }
+  return i;
+}
+
+// 输出解密之后的内容
+int main(int argc, char const *argv[]) {
+  int i,diff;//字符错位常数
+  char a[80];
+
+  scanf("%d\n", &diff);
+  diff *= -1;
+  gets(a);
+  for (i = 0; a[i] != '\0'; i++) {
+    a[i] = transfer(a[i],diff);
+  }
+  puts(a);
+
+  return 0;
+}
