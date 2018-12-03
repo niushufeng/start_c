@@ -32,18 +32,24 @@ rank = 5,line = 16
 */
 #include "stdio.h"
 #include "math.h"
-void fractal(int **a,int i,int j, int line) {
+
+// 如果在对应位置有值,赋值为1
+void fractal(int *p[],int i,int j, int line) {
   if (i != line){
-    a[i][j] = 1;
-    fractal(a,i+1, j-1, line);
-    fractal(a,i+1, j+1, line);
+    *(*(p+i)+j) = 1;
+    fractal(p,i+1, j-1, line);
+    fractal(p,i+1, j+1, line);
   }
 }
 int main(int argc, char const *argv[]) {
-  int i,j, line, rank,a[line][line];
+  int i,j,rank;
+  int line;//存储行数
+
   scanf("%d", &rank);
   // line = power(2,rank);
   line = pow(2,rank);
-  fractal(a, 0,(line-1)/2,line);
+  int a[line][line];
+  int (*p)[line] = a;
+  fractal(p, 0,(line-1)/2,line);
   return 0;
 }
