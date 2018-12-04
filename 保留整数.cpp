@@ -25,24 +25,24 @@
 #include "stdio.h"
 
 int main(int argc, char const *argv[]) {
-  char str1[80],str2[80];
+  char str1[80],str2[80],*p1=str1, *p2=str2;
   int i,j=0;
 
   gets(str1);
-  for (i = 0; str1[i] != '\0'; i++) {
-    if (str1[i]>='0' && str1[i]<='9') {
-      str2[j] = str1[i];
+  for (i = 0; *(p1+i) != '\0'; i++) {
+    if (*(p1+i)>='0' && *(p1+i)<='9') {
+      *(p2+j) = *(p1+i);
       j++;
     }
-    else if (j>0 && str2[j-1] == '*') {
+    else if (j>0 && *(p2+j-1) == '*') {
       ;
     }
     else{
-      str2[j] = '*';
+      *(p2+j) = '*';
       j++;
     }
   }
-  str2[j] = '\0';
+  *(p2+j) = '\0';
   puts(str2);
 
   return 0;
