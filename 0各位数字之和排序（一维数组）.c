@@ -39,17 +39,30 @@ void every_bit(int a,int *pbit){
   for (i = 0; ; i++) {
     *(pbit+i) = a % 10;
     if((a /= 10) == 0){
-      break
+      break;
     }
   }
 }
 
+void bubble_sort(int *p, int len) {
+  int _,i, j;
+  for (i = 0; i < len-1; i++) {
+    for (j = 0; j < len-1-i; j++) {
+      if (*(p+j)<*(p+j+1)) {
+        _ = *(p+j);*(p+j) = *(p+j+1);*(p+j+1) =_;
+      }
+    }
+  }
+
 // 按和排序
-void sort(int *pbit, count) {
-  ;
+void sort(int *pbit,int count){
+  int a[count],*p=a;
+  for (int i = 0; i < count; i++) {
+    *(p+i) = sum(pbit);
+  }
 }
 
-// 各位数字之和排序
-int main(int argc, char const *argv[]) {
-  
-}
+// // 各位数字之和排序
+// int main(int argc, char const *argv[]) {
+//
+// }
