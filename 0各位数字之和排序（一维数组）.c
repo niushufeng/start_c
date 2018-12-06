@@ -53,6 +53,7 @@ void bubble_sort(int *p, int len) {
       }
     }
   }
+}
 
 // 按和排序
 void sort(int *pbit,int count){
@@ -60,9 +61,25 @@ void sort(int *pbit,int count){
   for (int i = 0; i < count; i++) {
     *(p+i) = sum(pbit);
   }
+  bubble_sort(p, count);
 }
 
-// // 各位数字之和排序
-// int main(int argc, char const *argv[]) {
-//
-// }
+// 各位数字之和排序
+int main(int argc, char const *argv[]) {
+  while (1) {
+    int len;//存储数组长度
+    scanf("%d", &len);
+    if (len == 0) {
+      break;
+    }
+    int a[len],*p=a;
+    for (int i = 0; i < len; i++) {
+      scanf("%d", p+i);
+    }
+    sort(p,len);
+    for (int i = 0; i < len; i++) {
+      printf("%d ", *(p+i));
+    }
+  }
+  return 0;
+}
