@@ -25,9 +25,9 @@
 #include "stdio.h"
 
 // 求和
-int sum(int *p) {
+int sum(int *p, len) {
   int i,s = 0;
-  for ( i = 0; *p != '\0'; i++) {
+  for ( i = 0; i < n; i++) {
     s += *(p + i);
   }
   return s;
@@ -77,7 +77,7 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < len; i++) {
       scanf("%d", p+i);
       every_bit(*(p+i),_);//提取每一位
-      *(s+i) = sum(_);//将每一位保存到数组s
+      *(s+i) = sum(_,len);//将每一位保存到数组s
     }
     bubble_sort_(p, s, len);
     for (int i = 0; i < len; i++) {
