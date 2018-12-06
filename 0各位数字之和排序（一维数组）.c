@@ -25,7 +25,7 @@
 #include "stdio.h"
 
 // 求和
-int sum(int *p, len) {
+int sum(int *p,int len) {
   int i,s = 0;
   for ( i = 0; i < len; i++) {
     s += *(p + i);
@@ -52,7 +52,7 @@ void bubble_sort_(int *p,int *s,int len) {
   int _,i, j;
   for (i = 0; i < len-1; i++) {
     for (j = 0; j < len-1-i; j++) {
-      if (*(s+j)<*(s+j+1)) {
+      if (*(s+j) > *(s+j+1)) {
         _ = *(p+j);*(p+j) = *(p+j+1);*(p+j+1) =_;
         _ = *(s+j);*(s+j) = *(s+j+1);*(s+j+1) =_;
       }
