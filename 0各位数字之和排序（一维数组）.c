@@ -27,7 +27,7 @@
 // 求和
 int sum(int *p, len) {
   int i,s = 0;
-  for ( i = 0; i < n; i++) {
+  for ( i = 0; i < len; i++) {
     s += *(p + i);
   }
   return s;
