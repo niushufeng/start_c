@@ -44,42 +44,46 @@ void every_bit(int a,int *pbit){
   }
 }
 
-void bubble_sort(int *p, int len) {
+// 伪冒泡排序改进
+// 比较和的大小并调换数据位置
+// p:数据
+// s:各个位置和
+void bubble_sort_(int *p,int *s,int len) {
   int _,i, j;
   for (i = 0; i < len-1; i++) {
     for (j = 0; j < len-1-i; j++) {
-      if (*(p+j)<*(p+j+1)) {
+      if (*(s+j)<*(s+j+1)) {
         _ = *(p+j);*(p+j) = *(p+j+1);*(p+j+1) =_;
+        _ = *(s+j);*(s+j) = *(s+j+1);*(s+j+1) =_;
       }
     }
   }
-}
-
-// 按和排序
-void sort(int *pbit,int count){
-  int a[count],*p=a;
-  for (int i = 0; i < count; i++) {
-    *(p+i) = sum(pbit);
-  }
-  bubble_sort(p, count);
 }
 
 // 各位数字之和排序
 int main(int argc, char const *argv[]) {
   while (1) {
     int len;//存储数组长度
+
     scanf("%d", &len);
     if (len == 0) {
       break;
     }
-    int a[len],*p=a;
+
+    int p[len];//原数
+    int s[len];//保存每位数的和
+    int _[len];// 无关的中间变量
+
     for (int i = 0; i < len; i++) {
       scanf("%d", p+i);
+      every_bit(*(p+i),_);//提取每一位
+      *(s+i) = sum(_);//将每一位保存到数组s
     }
-    sort(p,len);
+    bubble_sort_(p, s, len);
     for (int i = 0; i < len; i++) {
       printf("%d ", *(p+i));
     }
   }
   return 0;
 }
+
