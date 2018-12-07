@@ -41,3 +41,30 @@
 // i:3
 // o:0
 // u:1
+#include "stdio.h"
+
+int main(int argc, char const *argv[]) {
+  int count;
+  scanf("%d\n", &count);
+  for (int i = 0; i < count; i++) {
+    int vowel[5]={0,0,0,0,0};//储存对应元音的数量
+    char s[100];
+
+    gets(s);
+    for (int i = 0;s[i] != '\0'; i++) {
+      switch (*(s+i)) {
+        case 'a': vowel[0]++; break;
+        case 'e': vowel[1]++; break;
+        case 'i': vowel[2]++; break;
+        case 'o': vowel[3]++; break;
+        case 'u': vowel[4]++; break;
+      }
+    }
+    printf("a:%d\n", vowel[0]);
+    printf("e:%d\n", vowel[1]);
+    printf("i:%d\n", vowel[2]);
+    printf("o:%d\n", vowel[3]);
+    printf("u:%d\n\n", vowel[4]);
+  }
+  return 0;
+}
