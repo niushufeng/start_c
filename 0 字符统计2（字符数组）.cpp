@@ -27,35 +27,52 @@
 // a 2
 // o 4
 // A 2
+//
+/* 用python解决
+s = input()
+a = [0]*52
+for i in s:
+    if i.isupper():
+        a[ord(i)-ord('A')] += 1
+    if i.islower():
+        a[ord(i)-ord('a')+26] += 1
+        #  a[ord(i-'a')+26] += 1 错,字符串不能做减法
+max_frequency = max(a)
+index_ = a.index(max_frequency)
+m_char = chr(index_ + ord('A')) if index_ < 26 else chr(index_ + ord('a')-26)
+print(m_char, max_frequency)
+(加上try-except即可)
+ */
 #include "stdio.h"
 
 
 int main(int argc, char const *argv[]) {
   int a,i;
   while (a = getchar() != EOF) {
-
-    int s[52];
-    int *p = s;
     int md=0;//存储最大数字
     int mi=0;//存储最大字母
+    while (a !='\n') {
+      int s[52];
+      int *p = s;
 
-    // 将次数初始化为0
-    for (i = 0; i < 52; i++) {
-      *(p+i) = 0;
-    }
-    if(a>='a' && a<='z'){
-      // *(p+a-'a'+26) ++;
-      ++s[a-'a'+26];
-    }
-    else if (a>='A' && a<='Z') {
-      //*(p+a-'A') ++;
-      ++s[a-'A'] ;
-    }
+      // 将次数初始化为0
+      for (i = 0; i < 52; i++) {
+        *(p+i) = 0;
+      }
+      if(a>='a' && a<='z'){
+        // *(p+a-'a'+26) ++;
+        ++s[a-'a'+26];
+      }
+      else if (a>='A' && a<='Z') {
+        //*(p+a-'A') ++;
+        ++s[a-'A'] ;
+      }
 
-    for ( i = 0; i < 52; i++) {
-      if (*(p+i)>md) {
-        md = *(p+i);
-        mi = i;
+      for ( i = 0; i < 52; i++) {
+        if (*(p+i)>md) {
+          md = *(p+i);
+          mi = i;
+        }
       }
     }
     // 将mi变成字母
@@ -66,7 +83,6 @@ int main(int argc, char const *argv[]) {
       mi+= 'A';
     }
     printf("%c %d\n", mi, md);
-
   }
 
   return 0;
