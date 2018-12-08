@@ -32,22 +32,26 @@
 
 int main(int argc, char const *argv[]) {
   int a,i;
-  int s[52];
-  int *p = s;
-  int md=0;//存储最大数字
-  int mi;//存储最大字母
-
-  // 将次数初始化为0
-  for (i = 0; i < 52; i++) {
-    *(p+i) = 0;
-  }
   while (a = getchar() != EOF) {
+
+    int s[52];
+    int *p = s;
+    int md=0;//存储最大数字
+    int mi=0;//存储最大字母
+
+    // 将次数初始化为0
+    for (i = 0; i < 52; i++) {
+      *(p+i) = 0;
+    }
     if(a>='a' && a<='z'){
-      (*(p+a-'a')) ++;
+      // *(p+a-'a'+26) ++;
+      ++s[a-'a'+26];
     }
     else if (a>='A' && a<='Z') {
-      (*(p+a-'A'+26)) ++;
+      //*(p+a-'A') ++;
+      ++s[a-'A'] ;
     }
+
     for ( i = 0; i < 52; i++) {
       if (*(p+i)>md) {
         md = *(p+i);
@@ -56,12 +60,14 @@ int main(int argc, char const *argv[]) {
     }
     // 将mi变成字母
     if (mi>=26) {
-      mi += 'A' ;
+      mi += 'a' ;
     }
     else{
-      mi+= 'a';
+      mi+= 'A';
     }
     printf("%c %d\n", mi, md);
+
   }
+
   return 0;
 }
