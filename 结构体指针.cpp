@@ -23,7 +23,7 @@ int main()
   //  ↑              ↑      ↑
   //  ↑              ↑      返回字符串的长度
   //  ↑              向系统申请存储空间
-  //  ↑              返回值为 void* 
+  //  ↑              返回值为 void*
   //  指针需要数据类型相同,进行强制类型转换
   // sizeof(int) 求数据所占字节数
   // malloc(n),向系统申请n个存储单元
@@ -41,7 +41,7 @@ int main()
   //         'a'
   //         NULL
   //          ↑p/head
-  for(i=1; i<4; i++){
+  for(i=0; i<3; i++){
     q=(struct data*)malloc(sizeof(struct data));
     // 以下以第一轮为例,其他同理
     //         x     |-->x
