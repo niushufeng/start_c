@@ -42,7 +42,7 @@ int main()
     //         'a'
     //         NULL
     //          ↑p/head
-    for(i=0; i<3; i++){
+    for(i=0; i<4; i++){
       q=(struct data*)malloc(sizeof(struct data));
       // 以下以第一轮为例,其他同理
       //         x     |-->x
@@ -69,7 +69,7 @@ int main()
     }
     p=q=head;//循环结束,p,q回到开始
     // ↓head/p/q
-    // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
+    // 0 'a' next-->1 'b' next-->2 'c' next->3 'd'-> 4 'e' NULL
     printf("%s\n", "test the initlization of the list");
     while(p !=NULL){
       printf("%d %c\n", p->x, p->c);
@@ -84,16 +84,16 @@ int main()
       p=p->next;
     }
     // ↓head        ↓q           ↓p
-    // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
+    // 0 'a' next-->1 'b' next-->2 'c' next->3 'd'-> 4 'e' NULL
 
     // 2.删除节点
     if (p->x == 2) {
       q->next = p->next;
       //                          ↓p
-      // ↓head        ↓q          2 'c' next->3 'd' NULL
+      // ↓head        ↓q          2 'c' next->3 'd'-> 4 'e' NULL
       // 0 'a' next-->1 'b' next--------------↑
       free(p);//将p所占内存释放
-      // 0 'a' next-->1 'b' next->3 'd' NULL
+      // 0 'a' next-->1 'b' next->3 'd'-> 4 'e' NULL
     }
     else{
       printf("%s\n", "Error");
@@ -101,27 +101,57 @@ int main()
     printf("%s\n", "test delete result");
     p = q = head;
     // ↓head/p/q
-    // 0 'a' next-->1 'b' next->3 'd' NULL
+    // 0 'a' next-->1 'b' next->3 'd'-> 4 'e' NULL
     while(p !=NULL){
       printf("%d %c\n", p->x, p->c);
       p = p->next;
     }
     p = q = head;
-    
-  // 链表的删除
+
+  // 链表的插入
+
+    // ↓head/p/q
+    // 0 'a' next-->1 'b' next->3 'd'-> 4 'e' NULL
+
+    // 1.确定插入的相关位置
+    for (int i = 0; i <2; i++) {
+      q=p;
+      p = p->next;
+    }
+    // ↓head        ↓q          ↓p
+    // 0 'a' next-->1 'b' next->3 'd'-> 4 'e' NULL
+
+    // 2.申请一个新的节点并保存
+    struct data *new_;
+    new_ = (struct data*)malloc(sizeof(struct data));
+    new_->x = 0; new_ ->c = 'n';
+
+    // 3.修改相关指针
+    q->next = new_;
+    new_->next = p;
+
+    p = q = head;
+    printf("%s\n", "test insert");
+    while(p !=NULL){
+      printf("%d %c\n", p->x, p->c);
+      p = p->next;
+    }
+
 }
 // input
 // 1 b
 // 2 c
 // 3 d
+// 4 e
 //
-// output
 // test the initlization of the list
 // 0 a
 // 1 b
 // 2 c
 // 3 d
+// 4 e
 // test delete result
 // 0 a
 // 1 b
 // 3 d
+// 4 e
