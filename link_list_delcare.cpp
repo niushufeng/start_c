@@ -14,7 +14,7 @@ struct data{
 //         next -|   NULL
 //
 
-// 测试结构体指针
+// 生成简单链表,并删除
 int main()
 {
   struct data *p, *q;
@@ -66,11 +66,46 @@ int main()
     //     q -----  NULL
     //     ↑head    ↑ q/p
   }
-  p=head;//循环结束,p回到开始
+  p=q=head;//循环结束,p,q回到开始
+  // ↓head/p/q
+  // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
+  printf("%s\n", "test the initlization of the list");
   while(p !=NULL){
     printf("%d %c\n", p->x, p->c);
     p = p->next;//到下一个p
   }
+
+  // 删除链表的节点(删除2)
+  p=q=head;
+  // 1.查找要删除的节点
+  while (p->x != 2 && p != NULL) {
+    q=p;
+    p=p->next;
+  }
+  // ↓head        ↓q           ↓p
+  // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
+
+  // 2.删除节点
+  if (p->x == 2) {
+    q->next = p->next;
+    //                          ↓p
+    // ↓head        ↓q          2 'c' next->3 'd' NULL
+    // 0 'a' next-->1 'b' next--------------↑
+    free(p);//将p所占内存释放
+    // 0 'a' next-->1 'b' next->3 'd' NULL
+  }
+  else{
+    printf("%s\n", "Error");
+  }
+  printf("%s\n", "test delete result");
+  p = q = head;
+  // ↓head/p/q
+  // 0 'a' next-->1 'b' next->3 'd' NULL
+  while(p !=NULL){
+    printf("%d %c\n", p->x, p->c);
+    p = p->next;
+  }
+
 }
 // input
 // 1 b
@@ -78,7 +113,12 @@ int main()
 // 3 d
 //
 // output
+// test the initlization of the list
 // 0 a
 // 1 b
 // 2 c
+// 3 d
+// test delete result
+// 0 a
+// 1 b
 // 3 d
