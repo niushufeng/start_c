@@ -26,19 +26,27 @@ int count_sub(char *p,char *q){
     //   ↓p[m]
     // p:abcabsdefabc
     for(n=m,k=0;q[k]==p[n];k++,n++){
-      ↓p[m]
-    p:abcabsdefabc
-      ↑
+//      ↓p[m]
+//    p:abcabsdefabc
+//      ↑p[n]
+//      ↓q[k]	
+//	q:abc 
       if(q[k+1]=='\0'){//如果下一项为0，结束
         num++;
         break;
       }
+//    下一个循环 
+//	   ↓p[m]
+//    p:abcabsdefabc
+//       ↑p[n]
+//      ↓q[k]	
+//	q:abc
     }
   }
    return num;
 }
 
-void main()
+inta main()
 { char s[80],sub[80];
   gets(s);
   gets(sub);
