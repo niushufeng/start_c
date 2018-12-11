@@ -17,95 +17,98 @@ struct data{
 // 生成简单链表,并删除
 int main()
 {
-  struct data *p, *q;
-  int i;
-  p =(struct data*)malloc(sizeof(struct data));
-  //  ↑              ↑      ↑
-  //  ↑              ↑      返回字符串的长度
-  //  ↑              向系统申请存储空间
-  //  ↑              返回值为 void*
-  //  指针需要数据类型相同,进行强制类型转换
-  // sizeof(int) 求数据所占字节数
-  // malloc(n),向系统申请n个存储单元
-  // ↑ #include"stdlib.h"
-  p->x = 0;
-  p->c = 'a';
-  p->next = NULL;
-  //          0
-  //         'a'
-  //         NULL
-  //          ↑p
+  // 链表初始化
+    struct data *p, *q;
+    int i;
+    p =(struct data*)malloc(sizeof(struct data));
+    //  ↑              ↑      ↑
+    //  ↑              ↑      返回字符串的长度
+    //  ↑              向系统申请存储空间
+    //  ↑              返回值为 void*
+    //  指针需要数据类型相同,进行强制类型转换
+    // sizeof(int) 求数据所占字节数
+    // malloc(n),向系统申请n个存储单元
+    // ↑ #include"stdlib.h"
+    p->x = 0;
+    p->c = 'a';
+    p->next = NULL;
+    //          0
+    //         'a'
+    //         NULL
+    //          ↑p
 
-  head = p;
-  //          0
-  //         'a'
-  //         NULL
-  //          ↑p/head
-  for(i=0; i<3; i++){
-    q=(struct data*)malloc(sizeof(struct data));
-    // 以下以第一轮为例,其他同理
-    //         x     |-->x
-    //         c     |   c
-    //         next -|   NULL
-    //         ↑ q
+    head = p;
+    //          0
+    //         'a'
+    //         NULL
+    //          ↑p/head
+    for(i=0; i<3; i++){
+      q=(struct data*)malloc(sizeof(struct data));
+      // 以下以第一轮为例,其他同理
+      //         x     |-->x
+      //         c     |   c
+      //         next -|   NULL
+      //         ↑ q
 
-    scanf("%d %c", &(q->x), &(q->c));
-    q->next=NULL;
-    //     0        x
-    //    'a'       c
-    //    NULL      NULL
-    //     ↑head/p    ↑ q
-    p -> next = q;
-    //     0      |->x
-    //    'a'     |  c
-    //     q -----  NULL
-    //     ↑head/p    ↑ q
-    p=q;
-    //     0      |->x
-    //    'a'     |  c
-    //     q -----  NULL
-    //     ↑head    ↑ q/p
-  }
-  p=q=head;//循环结束,p,q回到开始
-  // ↓head/p/q
-  // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
-  printf("%s\n", "test the initlization of the list");
-  while(p !=NULL){
-    printf("%d %c\n", p->x, p->c);
-    p = p->next;//到下一个p
-  }
+      scanf("%d %c", &(q->x), &(q->c));
+      q->next=NULL;
+      //     0        x
+      //    'a'       c
+      //    NULL      NULL
+      //     ↑head/p    ↑ q
+      p -> next = q;
+      //     0      |->x
+      //    'a'     |  c
+      //     q -----  NULL
+      //     ↑head/p    ↑ q
+      p=q;
+      //     0      |->x
+      //    'a'     |  c
+      //     q -----  NULL
+      //     ↑head    ↑ q/p
+    }
+    p=q=head;//循环结束,p,q回到开始
+    // ↓head/p/q
+    // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
+    printf("%s\n", "test the initlization of the list");
+    while(p !=NULL){
+      printf("%d %c\n", p->x, p->c);
+      p = p->next;//到下一个p
+    }
 
   // 删除链表的节点(删除2)
-  p=q=head;
-  // 1.查找要删除的节点
-  while (p->x != 2 && p != NULL) {
-    q=p;
-    p=p->next;
-  }
-  // ↓head        ↓q           ↓p
-  // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
+    p=q=head;
+    // 1.查找要删除的节点
+    while (p->x != 2 && p != NULL) {
+      q=p;
+      p=p->next;
+    }
+    // ↓head        ↓q           ↓p
+    // 0 'a' next-->1 'b' next-->2 'c' next->3 'd' NULL
 
-  // 2.删除节点
-  if (p->x == 2) {
-    q->next = p->next;
-    //                          ↓p
-    // ↓head        ↓q          2 'c' next->3 'd' NULL
-    // 0 'a' next-->1 'b' next--------------↑
-    free(p);//将p所占内存释放
+    // 2.删除节点
+    if (p->x == 2) {
+      q->next = p->next;
+      //                          ↓p
+      // ↓head        ↓q          2 'c' next->3 'd' NULL
+      // 0 'a' next-->1 'b' next--------------↑
+      free(p);//将p所占内存释放
+      // 0 'a' next-->1 'b' next->3 'd' NULL
+    }
+    else{
+      printf("%s\n", "Error");
+    }
+    printf("%s\n", "test delete result");
+    p = q = head;
+    // ↓head/p/q
     // 0 'a' next-->1 'b' next->3 'd' NULL
-  }
-  else{
-    printf("%s\n", "Error");
-  }
-  printf("%s\n", "test delete result");
-  p = q = head;
-  // ↓head/p/q
-  // 0 'a' next-->1 'b' next->3 'd' NULL
-  while(p !=NULL){
-    printf("%d %c\n", p->x, p->c);
-    p = p->next;
-  }
-
+    while(p !=NULL){
+      printf("%d %c\n", p->x, p->c);
+      p = p->next;
+    }
+    p = q = head;
+    
+  // 链表的删除
 }
 // input
 // 1 b
