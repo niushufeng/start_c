@@ -1,5 +1,11 @@
 /* 冒泡法排序,由大到小v1.0*/
 #include "stdio.h"
+
+/**
+ * 冒泡排序
+ * @param p   要排序的字符串
+ * @param len 字符串长度
+ */
 void bubble_sort(int *p, int len) {
   int _,i, j;
   for (i = 0; i < len-1; i++) {
