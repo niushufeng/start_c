@@ -15,4 +15,4 @@ github是个交流平台(也被调侃为同性交友社区,挺好玩)
 
 加0的是我还没解决的问题....
 ## 说正事
-- [下载老师的课件][https://raw.githubusercontent.com/chenboshuo/start_c/master/%EF%BC%A3%E8%AF%AD%E8%A8%80%E6%95%99%E5%AD%A6%E8%AF%BE%E4%BB%B6(091221).ppt]
+- [下载老师的课件](https://raw.githubusercontent.com/chenboshuo/start_c/master/courseware.ppt)
