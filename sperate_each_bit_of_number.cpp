@@ -10,4 +10,9 @@ main(){
   x2 = a / 10 % 10;
   x3 = a % 10;
   printf("%d %d %d", x1, x2, x3);
+
 }
+//input
+// 123
+//output
+//1 2 3
