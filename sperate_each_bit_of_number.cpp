@@ -9,10 +9,11 @@
  * 最终将每一位倒序存放在 bits 中
  */
 void every_bit(int number, int*bits){
-  do {
+  while (number) {
     *bits = number % 10;
     bits++;
-  } while(number/=10);
+    number/=10;
+  }
 }
 
 main(){
